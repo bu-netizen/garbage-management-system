@@ -1,0 +1,28 @@
+.footer {
+    text-align: center;
+    background: #111;
+    color: white;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Animated Social Icons */
+  .social-icons {
+    margin-top: 8px;
+  }
+  
+  .social-icons a {
+    color:plum;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 20px;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .social-icons a:hover {
+    transform: scale(1.2);
+    color: #ff004c;
+  }

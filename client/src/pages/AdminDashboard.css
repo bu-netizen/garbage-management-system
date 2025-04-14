@@ -1,0 +1,86 @@
+ /* Admin Dashboard Styling */
+.dashboard-container {
+    text-align: center;
+    background:url(https://media.licdn.com/dms/image/v2/C4D12AQHQNxZwxLjjfw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1590136117247?e=2147483647&v=beta&t=8h9jPTjm1YJyb7ezQiSw0njC83ZMpfV5cOh0N1dNYGo);
+  background-size:cover;
+    min-height: 100vh;
+    padding: 50px;
+    color: rgb(99, 19, 19);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  
+  
+  .dashboard-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 10px rgba(241, 99, 99, 0.4);
+  }
+  
+  .dashboard-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    opacity: 1;
+    color: rgb(231, 12, 12);
+  }
+
+  .grid-item {
+    background: rgba(255, 255, 255, 0.2); /* Glossy effect */
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 10px rgba(236, 18, 18, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+  }
+  h3{
+    color: black;
+  }
+  
+  .grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Icon Styling */
+  .grid-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: inherit; /* Inherit color from parent */
+  }
+  
+  /* Button Styling */
+  .dashboard-button {
+    background: rgba(224, 12, 12, 0.3);
+    color: rgb(12, 12, 12);
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
+    width: 62%;
+  }
+  
+  .dashboard-button:hover {
+    background: rgba(115, 232, 236, 0.6);
+    color: #004aad;
+    transform: scale(1.05);
+  }  
+  
+  /* Different colors for each grid item */
+  .create-bin { background: rgba(14, 221, 107, 0.3);  }   /* Neon Cyan */
+
+  .ManageDriver { background: rgba(0, 255, 127, 0.3); } /* Neon Green */
+  .assign-route { background: rgba(238, 3, 81, 0.3); }  /* Bright Red */
+  .garbage-report { background: rgba(81, 235, 132, 0.3); } /* Sky Blue */
+  .complaints { background: rgba(240, 6, 52, 0.3); }   /* Deep Crimson */
