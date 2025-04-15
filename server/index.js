@@ -1,20 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
 require('dotenv').config();
 const twilio = require("twilio");
 const jwt = require('jsonwebtoken');
 
 
-
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(cors({
+    origin: "http://localhost:5173", // frontend origin
+    credentials: true                // allow cookies
+}));
 
 //ROUTES
 const complaintRoutes = require("./routes/complaints");
 const driverRoutes = require("./routes/drivers");
+const authRoutes = require("./routes/auth");
 
 
 
@@ -34,6 +38,7 @@ app.post("/send-otp", async (req, res) => {
     try {
         const verification = await client.verify.v2.services(process.env.TWILIO_SERVICE_SID)
             .verifications.create({ to: phone, channel: "sms" });
+        console.log(verification)
         res.json({ success: true, message: "OTP sent successfully" });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
@@ -58,6 +63,7 @@ app.post("/verify-otp", async (req, res) => {
 });
 
 app.use("/api/drivers", driverRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/complaints", complaintRoutes);
 
 // Start Server

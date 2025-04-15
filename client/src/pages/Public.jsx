@@ -46,7 +46,7 @@ const Public = () => {
 
     try {
       const response = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
       );
       if (response.data.results[0]) {
         setLocation(response.data.results[0].formatted_address);
@@ -69,7 +69,7 @@ const Public = () => {
         location,
         nearestYard,
         complaint,
-      });
+      },{withCredentials:true});
 
       if (response.status === 201) {
         alert("✅ Complaint submitted successfully!");

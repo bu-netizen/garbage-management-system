@@ -13,12 +13,13 @@ import ManageDriver from "./pages/ManageDriver";
 import Driver from "./pages/Driver";
 import ManageBin from "./pages/ManageBin";
 import Viewcmplt from "./pages/Viewcmplt";
+import AssignDriver from "./pages/AssignDriver";
 import PublicDashboard from "./pages/PublicDashboard";
 import ComplainStatus from "./pages/ComplainStatus";
 import DriverDashboard from "./pages/dashboard/driver/page";
 import "./App.css";
-import UserLogin from "../src/pages/auth/Login"
-import UserRegister from "../src/pages/auth/Register"
+import UserLogin from "../src/pages/auth/Login";
+import UserRegister from "../src/pages/auth/Register";
 function App() {
 	return (
 		<>
@@ -29,7 +30,7 @@ function App() {
 				<Route path="/services" element={<Services />} />
 				<Route path="/login" element={<UserLogin />} />
 				<Route path="/register" element={<UserRegister />} />
-				<Route path="/Admin" element={<Admin />} />
+				<Route path="/Admin" element={<OTPLogin />} />
 				<Route path="/AdminDashboard" element={<AdminDashboard />} />
 				<Route path="/Public" element={<Public />} />
 				<Route path="/ManageDriver" element={<ManageDriver />} />
@@ -37,9 +38,9 @@ function App() {
 				<Route path="/ManageBin" element={<ManageBin />} />
 				<Route path="/PublicDashboard" element={<PublicDashboard />} />
 				<Route path="/view-cmplt" element={<Viewcmplt />} />
+				<Route path="/assignDriver" element={<AssignDriver />} />
 				<Route path="/status" element={<ComplainStatus />} />
 				<Route path="/driver-dashboard" element={<DriverDashboard />} />
-
 			</Routes>
 		</>
 	);

@@ -14,8 +14,15 @@ const complaintSchema = new mongoose.Schema({
   },
   driver:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "drivers"
-  }
+    ref: "drivers",
+    default:null
+  },
+  user:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+    default:null
+  },
+
 },{timestamps: true});
 
-module.exports = mongoose.model("Complaint", complaintSchema);
+module.exports = mongoose.model("complaint", complaintSchema);

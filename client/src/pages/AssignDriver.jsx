@@ -11,12 +11,8 @@ const ViewComplaints = () => {
 	const fetchData = async () => {
 		try {
 			const [complaintsRes, driversRes] = await Promise.all([
-				axios.get("http://localhost:5001/api/complaints/admin-all", {
-					withCredentials: true,
-				}),
-				axios.get("http://localhost:5001/api/drivers/all", {
-					withCredentials: true,
-				}),
+				axios.get("http://localhost:5001/api/complaints/assign-driver"),
+				axios.get("http://localhost:5001/api/drivers/all"),
 			]);
 			console.log(complaintsRes.data);
 			setComplaints(complaintsRes.data || []);
@@ -55,7 +51,7 @@ const ViewComplaints = () => {
 					color: "#2d3748",
 				}}
 			>
-				🧾 Submitted Complaints
+				Assign Drivers
 			</h2>
 
 			{complaints.length === 0 ? (
@@ -98,6 +94,29 @@ const ViewComplaints = () => {
 									{item.driver.licenseNumber})
 								</p>
 							)}
+
+							<fieldset className="fieldset">
+								<legend className="fieldset-legend">Assign Driver</legend>
+								<select
+									defaultValue={item.driver?._id || ""}
+									className="select"
+									onChange={(e) => {
+										const driverId = e.target.value;
+										if (driverId) {
+											updateStatus(item._id, driverId);
+										}
+									}}
+								>
+									<option disabled value="">
+										Pick a driver
+									</option>
+									{drivers?.map((driver) => (
+										<option key={driver._id} value={driver._id}>
+											{driver.name} - {driver.vehicle}
+										</option>
+									))}
+								</select>
+							</fieldset>
 						</div>
 					))}
 				</div>

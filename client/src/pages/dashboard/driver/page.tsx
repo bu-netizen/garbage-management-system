@@ -26,8 +26,12 @@ function DriverDashboard() {
 	const fetchData = async () => {
 		try {
 			const [complaintsResponse, statusResponse] = await Promise.all([
-				axios.get("http://localhost:5001/api/complaints/all"),
-				axios.get("http://localhost:5001/api/drivers/status"),
+				axios.get("http://localhost:5001/api/complaints/driver-all", {
+					withCredentials: true,
+				}),
+				axios.get("http://localhost:5001/api/drivers/status", {
+					withCredentials: true,
+				}),
 			]);
 
 			// Set the responses in state
@@ -116,7 +120,7 @@ function DriverDashboard() {
 				</header>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-3  gap-4 place-content-center">
 					{complaints.map((item) => (
-						<div className="card w-96 bg-base-100 card-md shadow-sm">
+						<div className="card w-96 bg-base-100 card-md shadow-sm" key={item._id}>
 							<div className="card-body">
 								<h2 className="card-title">{item.dumpType}</h2>
 								<p>

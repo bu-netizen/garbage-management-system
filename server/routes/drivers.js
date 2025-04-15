@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Driver = require("../models/Drivers.model"); // update path as needed
 const Complaint = require("../models/Complaint"); // update path as needed
+const { default: mongoose } = require("mongoose");
 
 // Add a driver
 router.post("/add", async (req, res) => {
@@ -32,20 +33,41 @@ router.post("/add", async (req, res) => {
 });
 router.get("/all", async (req, res) => {
   try {
-    const drivers = await Driver.aggregate([
-      
-    ]);
+    const drivers = await Driver.find();
     res.json(drivers);
   } catch (error) {
     console.error("Error fetching drivers:", error);
     res.status(500).json({ message: "Internal server error." });
   }
 })
-
+router.post("/login", async (req, res) => {
+  try {
+    const { name, licenseNumber } = req.body;
+    console.log("name")
+    const driver = await Driver.findOne({ name, licenseNumber });
+    if (!driver) {
+      return res.status(404).json({ message: "Driver not found" });
+    }
+    res
+      .cookie("userId", driver._id.toString(), {
+        httpOnly: true,         // Prevent JS access
+        sameSite: "lax",        // Can be 'strict' or 'none' (with secure)
+        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      }).status(201).json(driver);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error." });
+  }
+})
 
 router.get("/status", async (req, res) => {
+  const userId = req.cookies.userId;
   try {
     const complaints = await Complaint.aggregate([
+      {
+        $match: {
+          driver: new mongoose.Types.ObjectId(userId)
+        }
+      },
       {
         $group: {
           _id: "$status",  // Group by the 'status' field
