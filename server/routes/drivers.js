@@ -32,7 +32,9 @@ router.post("/add", async (req, res) => {
 });
 router.get("/all", async (req, res) => {
   try {
-    const drivers = await Driver.find();
+    const drivers = await Driver.aggregate([
+      
+    ]);
     res.json(drivers);
   } catch (error) {
     console.error("Error fetching drivers:", error);

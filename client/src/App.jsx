@@ -17,7 +17,8 @@ import PublicDashboard from "./pages/PublicDashboard";
 import ComplainStatus from "./pages/ComplainStatus";
 import DriverDashboard from "./pages/dashboard/driver/page";
 import "./App.css";
-
+import UserLogin from "../src/pages/auth/Login"
+import UserRegister from "../src/pages/auth/Register"
 function App() {
 	return (
 		<>
@@ -26,7 +27,8 @@ function App() {
 				<Route path="/about" element={<About />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/services" element={<Services />} />
-				<Route path="/OTPLogin" element={<OTPLogin />} />
+				<Route path="/login" element={<UserLogin />} />
+				<Route path="/register" element={<UserRegister />} />
 				<Route path="/Admin" element={<Admin />} />
 				<Route path="/AdminDashboard" element={<AdminDashboard />} />
 				<Route path="/Public" element={<Public />} />

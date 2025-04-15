@@ -30,7 +30,7 @@ const Home = () => {
             <ul style={{ listStyle: "none", padding: 0 }}>
               {[
                 { name: "Home", path: "/" },
-                { name: "Sign-in", path: "/OTPLogin" },
+                { name: "Sign-in", path: "/login" },
                 { name: "About", path: "/about" },
                 { name: "Service", path: "/services" },
                 { name: "Contact", path: "/contact" },
