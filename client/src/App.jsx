@@ -15,6 +15,7 @@ import ManageBin from "./pages/ManageBin";
 import Viewcmplt from "./pages/Viewcmplt";
 import PublicDashboard from "./pages/PublicDashboard";
 import ComplainStatus from "./pages/ComplainStatus";
+import DriverDashboard from "./pages/dashboard/driver/page";
 import "./App.css";
 
 function App() {
@@ -35,6 +36,8 @@ function App() {
 				<Route path="/PublicDashboard" element={<PublicDashboard />} />
 				<Route path="/view-cmplt" element={<Viewcmplt />} />
 				<Route path="/status" element={<ComplainStatus />} />
+				<Route path="/driver-dashboard" element={<DriverDashboard />} />
+
 			</Routes>
 		</>
 	);

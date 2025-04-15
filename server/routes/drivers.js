@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Driver = require("../models/Drivers.model"); // update path as needed
+const Complaint = require("../models/Complaint"); // update path as needed
 
 // Add a driver
 router.post("/add", async (req, res) => {
@@ -38,4 +39,33 @@ router.get("/all", async (req, res) => {
     res.status(500).json({ message: "Internal server error." });
   }
 })
+
+
+router.get("/status", async (req, res) => {
+  try {
+    const complaints = await Complaint.aggregate([
+      {
+        $group: {
+          _id: "$status",  // Group by the 'status' field
+          count: { $sum: 1 } // Count the number of complaints for each status
+        }
+      }
+    ]);
+
+    // Transform the aggregation result into the desired format
+    const statusCounts = complaints.reduce((acc, { _id, count }) => {
+      acc[_id] = count; // Convert status to lowercase (approved -> approved, pending -> pending)
+      return acc;
+    }, {});
+
+    console.log("Transformed result:", statusCounts);
+    res.json(statusCounts); // Send the transformed result
+
+  } catch (error) {
+    console.error("Error fetching complaint status:", error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+});
+
+
 module.exports = router;

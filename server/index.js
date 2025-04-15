@@ -16,8 +16,7 @@ app.use(cors());
 const complaintRoutes = require("./routes/complaints");
 const driverRoutes = require("./routes/drivers");
 
-app.use("/api/drivers", driverRoutes);
-app.use("/api/complaints", complaintRoutes);
+
 
 
 //mongodb connection
@@ -58,7 +57,8 @@ app.post("/verify-otp", async (req, res) => {
     }
 });
 
-
+app.use("/api/drivers", driverRoutes);
+app.use("/api/complaints", complaintRoutes);
 
 // Start Server
 app.listen(5001, () => console.log("🚀 Server running on port 5001"));
